@@ -36,7 +36,7 @@ export default function App() {
     secretDobMonth: "10",
     secretDobYear: "2006",
     hintText: "Select your Date of Birth from the calendar picker.",
-    relationshipDate: "2026-10-05T00:00:00", // 5 October 2026
+    relationshipDate: "2025-10-05T00:00:00", // 5 October 2026
     letterText: `Happy Birthday to the woman who holds my heart in her hands.
    Happy Birthday to the one who makes my ordinary days feel a little more beautiful, every moment a little sweeter, and life so much more meaningful. 🥹❤️🌍
 
