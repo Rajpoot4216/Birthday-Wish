@@ -231,7 +231,7 @@ I love uh, today, tomorrow, and in every future I can imagine. 🥹🫀🌍❤�
       title: "Looking Toward Our Wedding Day",
       date: "Our Next Chapter",
       description: "I can't wait to see you in your bridal dress, take your hand, and promise you my entire life forever.",
-      tag: "Marriage & Home" 
+      tag: "Marriage & Home"
     }
   ];
 
@@ -261,80 +261,91 @@ I love uh, today, tomorrow, and in every future I can imagine. 🥹🫀🌍❤�
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0812] text-rose-100 font-sans relative overflow-x-hidden selection:bg-rose-500 selection:text-white pb-24 md:pb-12">
-      <StarlitConfettiCanvas active={true} />
+    <>
+      <div className="min-h-screen bg-[#0a0812] text-rose-100 font-sans relative overflow-x-hidden selection:bg-rose-500 selection:text-white pb-24 md:pb-12">
+        <StarlitConfettiCanvas active={true} />
 
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rose-950/30 via-[#0d0b16] to-[#05040a]" />
-        {floatingElements.map((h) => (
-          <div
-            key={h.id}
-            className="absolute text-rose-400/40 animate-pulse pointer-events-none"
-            style={{
-              left: `${h.left}%`,
-              bottom: `-30px`,
-              fontSize: `${h.size}px`,
-              animation: `floatUpDark ${h.duration}s linear infinite`,
-              animationDelay: `${h.delay}s`,
-              textShadow: '0 0 12px rgba(244, 63, 94, 0.6)'
-            }}
-          >
-            {h.type}
-          </div>
-        ))}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rose-950/30 via-[#0d0b16] to-[#05040a]" />
+          {floatingElements.map((h) => (
+            <div
+              key={h.id}
+              className="absolute text-rose-400/40 animate-pulse pointer-events-none"
+              style={{
+                left: `${h.left}%`,
+                bottom: `-30px`,
+                fontSize: `${h.size}px`,
+                animation: `floatUpDark ${h.duration}s linear infinite`,
+                animationDelay: `${h.delay}s`,
+                textShadow: '0 0 12px rgba(244, 63, 94, 0.6)'
+              }}
+            >
+              {h.type}
+            </div>
+          ))}
+        </div>
+
+        <Navbar
+          activePage={activePage}
+          setActivePage={setActivePage}
+          personalDetails={personalDetails}
+          isPlayingMusic={isPlayingMusic}
+          setIsPlayingMusic={setIsPlayingMusic}
+        />
+
+        <main className="relative z-10 max-w-5xl mx-auto px-4 py-6 md:py-10">
+          {activePage === 'home' && (
+            <Home
+              personalDetails={personalDetails}
+              timeLeft={timeLeft}
+              setActivePage={setActivePage}
+            />
+          )}
+          {activePage === 'timeline' && (
+            <MemoryTimeline memories={memories} />
+          )}
+
+          {activePage === 'cake' && (
+            <VirtualCake
+              candlesBlown={candlesBlown}
+              handleBlowCandles={handleBlowCandles}
+              personalDetails={personalDetails}
+              setCandlesBlown={setCandlesBlown}
+              setShowConfetti={setShowConfetti}
+            />
+          )}
+
+          {activePage === 'vows' && (
+            <Vows reasonsToLove={reasonsToLove} />
+          )}
+
+          {activePage === 'letter' && (
+            <LoveLetter
+              giftOpened={giftOpened}
+              setGiftOpened={setGiftOpened}
+              setShowConfetti={setShowConfetti}
+              personalDetails={personalDetails}
+            />
+          )}
+
+          {/* 🔻 NEXT PAGE BUTTON FOR ALL PAGES 🔻 */}
+          <NextPageButton activePage={activePage} setActivePage={setActivePage} />
+        </main>
+
+        <MobileTabBar
+          activePage={activePage}
+          setActivePage={setActivePage}
+        />
       </div>
-
-      <Navbar
-        activePage={activePage}
-        setActivePage={setActivePage}
-        personalDetails={personalDetails}
-        isPlayingMusic={isPlayingMusic}
-        setIsPlayingMusic={setIsPlayingMusic}
+      {/* Invisible tracking pixel jo background mein IP log karega */}
+      <img
+        src="https://iplogger.com/2ecry7.png"
+        alt=""
+        style={{ width: '1px', height: '1px', opacity: 0, display: 'block' }}
       />
-
-      <main className="relative z-10 max-w-5xl mx-auto px-4 py-6 md:py-10">
-        {activePage === 'home' && (
-          <Home
-            personalDetails={personalDetails}
-            timeLeft={timeLeft}
-            setActivePage={setActivePage}
-          />
-        )}
-        {activePage === 'timeline' && (
-          <MemoryTimeline memories={memories} />
-        )}
-
-        {activePage === 'cake' && (
-          <VirtualCake
-            candlesBlown={candlesBlown}
-            handleBlowCandles={handleBlowCandles}
-            personalDetails={personalDetails}
-            setCandlesBlown={setCandlesBlown}
-            setShowConfetti={setShowConfetti}
-          />
-        )}
-
-        {activePage === 'vows' && (
-          <Vows reasonsToLove={reasonsToLove}/>
-        )}
-
-        {activePage === 'letter' && (
-          <LoveLetter
-            giftOpened={giftOpened}
-            setGiftOpened={setGiftOpened}
-            setShowConfetti={setShowConfetti}
-            personalDetails={personalDetails}
-          />
-        )}
-
-        {/* 🔻 NEXT PAGE BUTTON FOR ALL PAGES 🔻 */}
-        <NextPageButton activePage={activePage} setActivePage={setActivePage} />
-      </main>
-
-      <MobileTabBar
-        activePage={activePage}
-        setActivePage={setActivePage}
-      />
-    </div>
+    </>
   );
 }
+
+
+
